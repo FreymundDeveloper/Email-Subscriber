@@ -33,15 +33,25 @@ export const createEmail = (req: Request, res: Response) => {
 
     if (!emailFormat.test(email)) return res.status(400).json({ error: 'Invalid email format' });
 
-    database.run('INSERT INTO emails (email) VALUES (?)', [email], function (err) {
+    database.get('SELECT * FROM emails WHERE email = ?', [email], (err, row) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: 'Internal Server Error' });
         }
 
-        res.json({ id: this.lastID, email });
+        if (row) return res.status(400).json({ error: 'Email already exists' });
+
+        database.run('INSERT INTO emails (email) VALUES (?)', [email], function (err) {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+
+            res.json({ id: this.lastID, email });
+        });
     });
 }
+
 
 export const deleteEmail = (req: Request, res: Response) => {
     const { id } = req.params;
