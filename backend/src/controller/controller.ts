@@ -49,7 +49,7 @@ export const createEmail = (req: Request, res: Response) => {
             }
 
             try {
-                //await sendEmailConfirmation(email); // To enable nodemailer
+                // await sendEmailConfirmation(email); // To enable the nodemailer algorithm.
                 res.json({ id: this.lastID, email });
             } catch (error) {
                 console.error('Error sending confirmation email:', error);

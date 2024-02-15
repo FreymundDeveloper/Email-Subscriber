@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 // The idea of ​​this algorithm is to simulate a mechanism for confirming the registration of 
 // registered emails. Linking the application to a simulated server on the Mailtrap platform.
 
-// Adjust transport according to your server configuration.
+// Adjust transporter according to your server configuration.
 const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
