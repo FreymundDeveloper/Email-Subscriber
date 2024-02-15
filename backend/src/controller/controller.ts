@@ -50,7 +50,7 @@ export const createEmail = (req: Request, res: Response) => {
 
             try {
                 // await sendEmailConfirmation(email); // To enable the nodemailer algorithm.
-                res.json({ id: this.lastID, email });
+                res.status(201).json({ id: this.lastID, email });
             } catch (error) {
                 console.error('Error sending confirmation email:', error);
                 res.status(500).json({ error: 'Error sending confirmation email' });
