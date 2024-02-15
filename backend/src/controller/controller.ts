@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import database from '../model/model';
+import sendEmailConfirmation from '../utils/emailsResponse';
 
 export const getEmails = (req: Request, res: Response) => {
     const { id } = req.query;
@@ -41,13 +42,19 @@ export const createEmail = (req: Request, res: Response) => {
 
         if (row) return res.status(400).json({ error: 'Email already exists' });
 
-        database.run('INSERT INTO emails (email) VALUES (?)', [email], function (err) {
+        database.run('INSERT INTO emails (email) VALUES (?)', [email], async function (err) {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: 'Internal Server Error' });
             }
 
-            res.json({ id: this.lastID, email });
+            try {
+                //await sendEmailConfirmation(email); // To enable nodemailer
+                res.json({ id: this.lastID, email });
+            } catch (error) {
+                console.error('Error sending confirmation email:', error);
+                res.status(500).json({ error: 'Error sending confirmation email' });
+            }
         });
     });
 }
