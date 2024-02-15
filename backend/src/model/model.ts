@@ -2,7 +2,7 @@ import sqlite3 from 'sqlite3';
 import fs from 'fs';
 import path from 'path';
 
-const databaseDir = 'data';
+const databaseDir = 'src/data';
 const databasePath = path.join(databaseDir, 'emails.db');
 
 if (!fs.existsSync(databaseDir)) fs.mkdirSync(databaseDir);
