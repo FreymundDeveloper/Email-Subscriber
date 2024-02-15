@@ -34,6 +34,9 @@ app.get('/emails', (req: Request, res: Response) => {
 
 app.post('/emails', (req: Request, res: Response) => {
     const { email } = req.body;
+    const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailFormat.test(email)) return res.status(400).json({ error: 'Invalid email format' });
 
     database.run('INSERT INTO emails (email) VALUES (?)', [email], function (err) {
         if (err) {
