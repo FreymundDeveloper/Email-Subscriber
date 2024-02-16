@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Form } from '../components';
+import { ContainerHome, Form } from '../components';
 
 export const Home: React.FC = () => {
 
@@ -9,16 +8,8 @@ export const Home: React.FC = () => {
     };
     
     return (
-        <AppContainer>
+        <ContainerHome>
             <Form onSubmit={handleSubmit}></Form>
-        </AppContainer>
+        </ContainerHome>
     );
-  }
-
-const AppContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 50vh;
-`;
+}
