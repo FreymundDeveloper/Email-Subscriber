@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from 'styled-components';
-import { ButtonAction, Title } from '../../components';
+import { ButtonAction, InputForm, Title } from '../../components';
 
 interface FormProps {
   onSubmit: (inputValue: string) => void;
@@ -27,7 +27,7 @@ export const Form: React.FC<FormProps> = ({ onSubmit }) => {
         <FormContainer>
             <FormContent onSubmit={handleSubmit}>
                 <Title text={"Type your e-mail"} />
-                <Input type="text" placeholder="exemple@mail.com" value={inputValue} onChange={handleChange} />
+                <InputForm type={"text"} placeholder={"exemple@mail.com"} value={inputValue} onChange={handleChange} />
                 <ButtonContainer>
                     <ButtonAction type="submit">Submit</ButtonAction>
                     <ButtonAction type="button" onClick={handleClear}>Clear</ButtonAction>
@@ -54,13 +54,6 @@ const FormContent = styled.form`
         width: 350px;
         height: 200px;
     }
-`;
-
-const Input = styled.input`
-    width: 90%;
-    padding: 12px;
-    margin: 2px;
-    border-radius: 10px;
 `;
 
 const ButtonContainer = styled.div`
