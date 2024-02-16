@@ -26,6 +26,8 @@ export const Form: React.FC<FormProps> = ({ onSubmit }) => {
             onSubmit(inputValue);
             setInputValue('');
         }
+
+        if ( showAlert !== "hidden") setShowAlert("hidden");
     };
 
     const handleClear = () => {
