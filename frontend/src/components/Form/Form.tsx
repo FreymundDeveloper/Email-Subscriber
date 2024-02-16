@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from 'styled-components';
-import { ButtonAction } from '../../components';
+import { ButtonAction, Title } from '../../components';
 
 interface FormProps {
   onSubmit: (inputValue: string) => void;
@@ -26,7 +26,7 @@ export const Form: React.FC<FormProps> = ({ onSubmit }) => {
     return (
         <FormContainer>
             <FormContent onSubmit={handleSubmit}>
-                <Title>Type your e-mail</Title>
+                <Title text={"Type your e-mail"} />
                 <Input type="text" placeholder="exemple@mail.com" value={inputValue} onChange={handleChange} />
                 <ButtonContainer>
                     <ButtonAction type="submit">Submit</ButtonAction>
@@ -53,18 +53,6 @@ const FormContent = styled.form`
     @media (max-width: 548px) {
         width: 350px;
         height: 200px;
-    }
-`;
-
-const Title = styled.label`
-    display: block;
-    margin: 0px 0px 10px 10px;
-    color: #fff;
-    text-align: left;
-
-    @media (max-width: 548px) {
-        text-align: center;
-        margin-left: 0px;
     }
 `;
 

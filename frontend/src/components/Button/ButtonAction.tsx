@@ -29,4 +29,9 @@ const StyledButton = styled.button`
     &:hover {
         background-color: ${(props) => darken(0.1, props.theme.color.buttonColor)};
     }
+
+    @media (max-width: 548px) {
+        margin: 5px 5px 10px 5px;
+        padding: 10px 20px;
+    }
 `;
