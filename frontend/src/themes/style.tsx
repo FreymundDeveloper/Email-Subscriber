@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle<{ theme?: ThemeType }>`
         margin: 0 auto;
     }
     
-    @media (max-width: 548px) {
+    @media (max-width: 848px) {
         body {
             width: 400px;
         }

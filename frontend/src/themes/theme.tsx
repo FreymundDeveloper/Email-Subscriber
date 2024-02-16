@@ -1,11 +1,13 @@
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 
-const bodyColor = '#000000',
-    buttonColor = '#101770';
+const bodyColor = '#1f1f25',
+    formColor = '#09253f',
+    buttonColor = '#265a7e';
 
 const theme = {
     color: {
         bodyColor,
+        formColor,
         buttonColor,
     }
 }
