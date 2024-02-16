@@ -1,26 +1,36 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from 'styled-components';
-import { ButtonAction, ContainerButton, ContainerForm, InputForm, Title } from '../../components';
+import { AlertForm, ButtonAction, ContainerButton, ContainerForm, InputForm, Title } from '../../components';
 
 interface FormProps {
     onSubmit: (inputValue: string) => void;
 }
 
 export const Form: React.FC<FormProps> = ({ onSubmit }) => {
-    const [inputValue, setInputValue] = useState<string>("")
+    const [inputValue, setInputValue] = useState<string>("");
+    const [showAlert, setShowAlert] = useState<string>("hidden");
+
+    const emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
+        setShowAlert("hidden");
     };
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        onSubmit(inputValue);
-        setInputValue('');
+
+        if (!emailFormat.test(inputValue)) setShowAlert("error");
+        else {
+            setShowAlert("success");
+            onSubmit(inputValue);
+            setInputValue('');
+        }
     };
 
     const handleClear = () => {
         setInputValue('');
+        setShowAlert("hidden");
     };
 
     return (
@@ -32,6 +42,7 @@ export const Form: React.FC<FormProps> = ({ onSubmit }) => {
                     <ButtonAction type="submit">Submit</ButtonAction>
                     <ButtonAction type="button" onClick={handleClear}>Clear</ButtonAction>
                 </ContainerButton>
+                <AlertForm submitCall={showAlert} />
             </FormContent>
         </ContainerForm>
     );
