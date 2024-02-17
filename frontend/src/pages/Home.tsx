@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AlertForm, ContainerHome, Form } from '../components';
-import { postCallEmail } from '../service/apiService';
+import { postCallEmail } from '../services/apiService';
 import { handleTimeout } from '../utils/utilsTimer';
 
 export const Home: React.FC = () => {
