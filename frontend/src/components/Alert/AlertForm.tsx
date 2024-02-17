@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { handleTimeout } from '../../utils/utilsTimer';
 
 interface AlertFormProps {
     submitCall: string;
@@ -13,11 +14,7 @@ export const AlertForm: React.FC<AlertFormProps> = ({ submitCall }) => {
         if (submitCall !== 'hidden') {
             setIsVisible(true);
 
-            const timeout = setTimeout(() => {
-                setIsVisible(false);
-            }, 2000);
-
-            return () => { clearTimeout(timeout); };
+            return handleTimeout(2000, setIsVisible, false);
         }
     }, [submitCall]);
 

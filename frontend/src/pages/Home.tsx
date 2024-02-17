@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AlertForm, ContainerHome, Form } from '../components';
 import { postCallEmail } from '../service/apiService';
+import { handleTimeout } from '../utils/utilsTimer';
 
 export const Home: React.FC = () => {
     const [showAlert, setShowAlert] = useState<string>("hidden");
@@ -21,11 +22,7 @@ export const Home: React.FC = () => {
             console.error('Error when making the post call:', error);
         }
 
-        const timeout = setTimeout(() => {
-            setShowAlert("hidden");
-        }, 1500);
-
-        return () => { clearTimeout(timeout); };
+        return handleTimeout(1500, setShowAlert, 'hidden');
     };
     
     return (
