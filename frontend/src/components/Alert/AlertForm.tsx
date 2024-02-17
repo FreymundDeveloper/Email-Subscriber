@@ -34,7 +34,7 @@ const StyledAlert = styled.div<{ isError: boolean }>`
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: ${({ isError }) => isError ? '#8b0202' : '#019c5c'};
+    background-color: ${({ isError }) => isError ? ((props) => props.theme.color.errorAlertColor) : ((props) => props.theme.color.successAlertColor)};
     color: #fff;
     padding: 10px;
     border-radius: 10px;
