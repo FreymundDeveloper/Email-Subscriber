@@ -23,11 +23,12 @@ export const AlertForm: React.FC<AlertFormProps> = ({ submitCall }) => {
 
     useEffect(() => {
         if (submitCall === 'success') setAlertMessage('Email registered successfully!');
-        else setAlertMessage('Email format error!');
+        else if (submitCall === 'errorFormat') setAlertMessage('Email format error!');
+        else setAlertMessage('Error, email already exists!');
     }, [submitCall]);
 
     return (isVisible && submitCall !== 'hidden') ? (
-        <StyledAlert isError={submitCall === 'error'}>{alertMessage}</StyledAlert>
+        <StyledAlert isError={submitCall !== 'success'}>{alertMessage}</StyledAlert>
     ) : null;
 }
 
