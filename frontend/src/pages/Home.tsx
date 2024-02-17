@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AlertForm, ContainerHome, Form } from '../components';
-import axios from 'axios';
+import { postCallEmail } from '../service/apiService';
 
 export const Home: React.FC = () => {
     const [showAlert, setShowAlert] = useState<string>("hidden");
@@ -11,11 +11,9 @@ export const Home: React.FC = () => {
         try {
             if (!emailFormat.test(inputValue)) setShowAlert("errorFormat");
             else {
-                const response = await axios.post<string>('http://localhost:3001/emails', {
-                    email: inputValue
-                });
+                await postCallEmail(inputValue);
                 setShowAlert("success");
-                console.log('Post call made successfully!', response.data);
+                console.log('Post call made successfully!');
             }
             
         } catch (error) {
