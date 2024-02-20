@@ -1,8 +1,8 @@
 # Email-Subscriber
 
-Email-Subscriber is a simple application that registers an email in a database. The application is linked to a response algorithm (similar to the idea of ​​a “subscribe newsletter”), developed with the nodemail library.
+Email-Subscriber is a simple application that registers an email in a database. The application is linked to a response algorithm (similar to the idea of ​​a “subscribe newsletter”), developed with the nodemailer library.
 
-**Obs**: Due to the need to connect to a paid server/platform, the nodemailer algorithm is disabled. To reactivate it, simply uncomment the code snippet in "backend\src\controller\controller.ts".
+**Obs**: Due to the need to connect to a paid server/platform, the nodemailer algorithm is disabled. To reactivate it, simply uncomment the code snippet in "./backend/src/controller/controller.ts".
 
 Some technologies used:
 
@@ -46,6 +46,6 @@ $ npm run test
 **Obs**: The application has 2 Dockerfiles, one in "./backend" and another in "./frontend". The configuration and building process for both is done through "docker-compose.yml" in the root of the application.
 
 ```bash
-# Build
+# Build containers
 $ docker-compose up
 ```
