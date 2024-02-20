@@ -1,4 +1,4 @@
-# Settings to generate the application backtend container.
+# Settings to generate the application backend container.
 FROM node:18.14.0
 
 # Step-by-step installation of Sqlite dependencies.
@@ -9,13 +9,13 @@ RUN apt-get update && \
 
 WORKDIR /app/backend
 
-COPY backend/package.json backend/package-lock.json ./
+COPY package.json package-lock.json ./
 
 RUN npm install
 
-COPY backend .
+COPY . .
 
-# Construction of the sqlite database.
+# Construction of the Sqlite database.
 RUN npm rebuild sqlite3
 
 EXPOSE 3001
